@@ -9,14 +9,6 @@ let state = {
 let CodeEditorStore = Reflux.createStore({
   listenables: CodeEditorActions,
 
-  onSetGrammar: async function(grammar) {
-    state.grammar = grammar
-    this.trigger(state)
-  },
-
-  onBuild: async function() {
-    // TO DO : build
-  }
 })
 
 export default CodeEditorStore

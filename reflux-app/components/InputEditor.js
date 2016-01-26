@@ -3,14 +3,13 @@ import { Input, Label, Alert, Panel } from 'react-bootstrap'
 import React from 'react'
 import InputEditorActions from '../actions/InputEditorActions'
 import InputEditorStore from '../stores/InputEditorStore'
+import AppActions from '../actions/AppActions'
 
 class InputEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      input: '',
-      parseResult: {},
-      output: {}
+
     }
   }
 
@@ -25,20 +24,21 @@ class InputEditor extends React.Component {
       this.unsubscribe();
   }
 
-  onGrammarChange(grammar) {
-    InputEditorActions.parse(input)
+  onInputChange(e) {
+    AppActions.parse(e.target.value)
+    e.preventDefault()
   }
 
   render() {
     return (
       <div>
         <h1><Label>2</Label> Test the generated parser with some input</h1>
-        <Input type='textarea' />
-        <Alert bsStyle={ this.state.parseResult.status }>
-          { this.state.parseResult.detail }
+        <Input type='textarea' onChange={ this.onInputChange } />
+        <Alert bsStyle={ this.props.parseResult.status }>
+          { this.props.parseResult.detail }
         </Alert>
-        <Panel header='Output' bsStyle={ this.state.output.status }>
-          { this.state.output.detail }
+        <Panel header='Output' bsStyle={ this.props.output.status }>
+          { this.props.output.detail }
         </Panel>
       </div>
     )

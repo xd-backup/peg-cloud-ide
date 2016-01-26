@@ -51,4 +51,6 @@ gulp.task('install', function() {
   gulp.src(['./config/default.json'])
     .pipe(rename('config.json'))
     .pipe(gulp.dest('./config/'))
+  gulp.src(['./node_modules/pegjs/lib/**'])
+    .pipe(gulp.dest('./public/vendor/pegjs/'))
 });

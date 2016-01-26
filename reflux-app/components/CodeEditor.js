@@ -7,13 +7,13 @@ import { Label, Alert } from 'react-bootstrap'
 import React from 'react'
 import CodeEditorActions from '../actions/CodeEditorActions'
 import CodeEditorStore from '../stores/CodeEditorStore'
+import AppActions from '../actions/AppActions'
 
 class CodeEditor extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      grammar: '',
-      buildResult: {}
+
     }
   }
 
@@ -29,7 +29,7 @@ class CodeEditor extends React.Component {
   }
 
   onGrammarChange(grammar) {
-    CodeEditorActions.build(grammar)
+    AppActions.build(grammar)
   }
 
   render() {
@@ -46,11 +46,11 @@ class CodeEditor extends React.Component {
           theme='github'
           showGutter={true}
           showPrintMargin={true}
-          value={ this.state.grammar }
+          value={ this.props.grammar }
           editorProps={{$blockScrolling: true}}
         />
-        <Alert bsStyle={ this.state.buildResult.status }>
-          { this.state.buildResult.detail }
+        <Alert bsStyle={ this.props.buildResult.status }>
+          { this.props.buildResult.detail }
         </Alert>
       </div>
     )
